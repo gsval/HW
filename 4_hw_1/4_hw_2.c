@@ -1,51 +1,25 @@
-#include<stdio.h>
-#include<malloc.h>
-#include<locale.h>
+#include <stdio.h>
+#include <locale.h>
+#include <malloc.h>
 
 int main() {
-	setlocale(LC_ALL, "russian");
+	setlocale(LC_ALL, "rus");
 	int* mass;
 	int size;
-	printf("Введите размер массива:");
+	printf("Г‚ГўГҐГ¤ГЁГІГҐ Г°Г Г§Г¬ГҐГ° Г¬Г Г±Г±ГЁГўГ : ");
 	scanf_s("%d", &size);
 	mass = (int*)malloc(sizeof(int) * size);
-	printf("Введите массив:");
+	printf("Г‚ГўГҐГ¤ГЁГІГҐ Г¬Г Г±Г±ГЁГў: ");
 	for (int i = 0; i < size; i++) {
 		scanf_s("%d", &mass[i]);
 	}
 	int k = 0;
-	for (int i = 1; i < size - 1; i++) {
-		if (mass[i] > mass[i - 1] && mass[i] > mass[i + 1]) {
+	for (int i = 0; i < size - 1; i++) {
+		if (mass[i] < mass [i - 1] && mass[i] < mass[i + 1]) {
 			k++;
 		}
 	}
-	int* max_mass;
-	max_mass = (int*)malloc(sizeof(int) * k);
-	printf("Результат: минимальный из %d локальных максимумов [", k);
-	for (int i = 1; i < size - 1; i++) {
-		if (mass[i] > mass[i - 1] && mass[i] > mass[i + 1]) {
-			printf("%d", mass[i]);
-		}
-
-	}
-	printf("] равен ");
-
-	int n = 0;
-	for (int i = 1; i < size - 1; i++) {
-		if (mass[i] > mass[i - 1] && mass[i] > mass[i + 1]) {
-			max_mass[n] = mass[i];
-			n++;
-		}
-	}
-	int min;
-	min = max_mass[0];
-	for (int i = 1; i < k; i++) {
-		if (max_mass[i] < min) {
-			min = max_mass[i];
-		}
-	}
-	printf("%d", min);
-	free(max_mass);
-	free(min);
+	printf("ГђГҐГ§ГіГ«ГјГІГ ГІ: %d Г«Г®ГЄГ Г«ГјГ­Г»Гµ Г¬ГЁГ­ГЁГ¬ГіГ¬Г ", k);
+	free(mass);
 	return 0;
 }
